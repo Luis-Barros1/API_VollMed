@@ -42,6 +42,5 @@ public class MedicosController {
     public void deletarMedicoPorId(@PathVariable Long id){
         Medico medico = medicoRepository.getReferenceById(id);
         medico.excluir();
-
     }
 }
