@@ -1,2 +1,2 @@
 # API_VollMed
-API em Framework Spring para agendamento de consultas médicas online
+API Rest realizada com Spring Boot para agendamento de consultas médicas online
