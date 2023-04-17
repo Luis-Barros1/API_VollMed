@@ -2,13 +2,16 @@ package med.voll.api.domain.medico;
 
 import jakarta.persistence.*;
 import lombok.*;
+import med.voll.api.domain.consulta.Consulta;
 import med.voll.api.domain.endereco.Endereco;
 
+import java.util.List;
+
 @Table(name = "Medicos")
-@Entity(name = "medico")
+@Entity(name = "Medico")
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Medico {
 
