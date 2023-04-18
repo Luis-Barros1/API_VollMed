@@ -22,7 +22,8 @@ public interface MedicoRepository extends JpaRepository<Medico, Long> {
               )
             ORDER BY rand()
             LIMIT 1
-            
             """, nativeQuery = true)
     Medico escolherMedicoAleatorioLivreNaData(int especialidade, LocalDateTime data);
+
+    boolean existsByIdAndAtivoTrue(Long idMedico);
 }

@@ -14,7 +14,7 @@ public class CancelamentoDeConsultas {
     ConsultaRepository consultaRepository;
     public void cancelarConsulta(DadosCancelamentoConsulta dados){
         Consulta consulta = consultaRepository.getReferenceById(dados.idConsulta());
-        LocalDateTime dataConsulta = consulta.getDataHoraConsulta();
+        LocalDateTime dataConsulta = consulta.getData();
 
         if(!LocalDateTime.now().plusHours(24).isBefore(dataConsulta)){
             consultaRepository.delete(consulta);

@@ -30,5 +30,5 @@ public class Consulta {
     private Paciente paciente;
 
     @Column(name = "data")
-    private LocalDateTime dataHoraConsulta;
+    private LocalDateTime data;
 }
