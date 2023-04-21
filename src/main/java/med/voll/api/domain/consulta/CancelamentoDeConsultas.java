@@ -1,27 +1,23 @@
 package med.voll.api.domain.consulta;
 
 
-import med.voll.api.domain.ValidacaoException;
+import med.voll.api.domain.consulta.validacoes.cancelamento.ValidadorCancelamentoDeConsultas;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class CancelamentoDeConsultas {
 
     @Autowired
-    ConsultaRepository consultaRepository;
+    private ConsultaRepository consultaRepository;
+
+    @Autowired
+    private List<ValidadorCancelamentoDeConsultas> validadores;
+
     public void cancelarConsulta(DadosCancelamentoConsulta dados){
-        Consulta consulta = consultaRepository.getReferenceById(dados.idConsulta());
-        LocalDateTime dataConsulta = consulta.getData();
-
-        if(!LocalDateTime.now().plusHours(24).isBefore(dataConsulta)){
-            consultaRepository.delete(consulta);
-        }
-        else{
-            throw new ValidacaoException("Uma consulta somente poderá ser cancelada com antecedência mínima de 24 horas.");
-        }
-
+        validadores.forEach(v -> v.validar(dados));
+        consultaRepository.deleteById(dados.idConsulta());
     }
 }
